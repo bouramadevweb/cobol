@@ -1,0 +1,37 @@
+IDENTIFICATION DIVISION.
+PROGRAM-ID. gestion_des_fichier.
+
+ENVIRONMENT DIVISION.
+INPUT-OUTPUT SECTION.
+FILE-CONTROL.
+    SELECT monfichier ASSIGN TO 'fichier2'
+           ORGANIZATION IS LINE SEQUENTIAL
+           ACCESS MODE IS SEQUENTIAL
+           FILE STATUS IS STATUS-MONFICHIER.
+
+DATA DIVISION.
+FILE SECTION.
+FD monfichier.
+01 Personne.
+   05 nom PIC X(20).
+   05 AGE PIC 99.
+   05 Profession PIC X(20).
+
+WORKING-STORAGE SECTION.
+77 STATUS-MONFICHIER PIC XX.
+
+PROCEDURE DIVISION.
+   OPEN OUTPUT monfichier.
+
+   MOVE "Bourama" TO nom.
+   MOVE 40 TO AGE.
+   MOVE "Développeur" TO Profession.
+
+   WRITE Personne.
+   MOVE AGE TO Personne.
+   WRITE Personne.
+   WRITE Profession.
+
+   CLOSE monfichier.
+
+   STOP RUN.
